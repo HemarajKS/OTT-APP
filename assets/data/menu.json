@@ -1,0 +1,74 @@
+{
+  "menus": [
+    {
+      "name": "nav-menu",
+      "items": [
+        {
+          "id": "1",
+          "title": "Home",
+          "url": "/home",
+          "visibility": "true",
+          "children": [
+            {
+              "id": "1",
+              "title": "All",
+              "url": "/all",
+              "visibility": "true",
+              "children": []
+            },
+            {
+              "id": "2",
+              "title": "TV Shows",
+              "url": "/tvShows",
+              "visibility": "true",
+              "children": []
+            },
+            {
+              "id": "3",
+              "title": "Movies",
+              "url": "/Movies",
+              "visibility": "true",
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "2",
+          "title": "Store",
+          "url": "/store",
+          "visibility": "true",
+          "children": [
+            {
+              "id": "1",
+              "title": "All",
+              "url": "/all",
+              "visibility": "true",
+              "children": []
+            },
+            {
+              "id": "2",
+              "title": "Rent",
+              "url": "/rent",
+              "visibility": "true",
+              "children": []
+            },
+            {
+              "id": "3",
+              "title": "Channel",
+              "url": "/channel",
+              "visibility": "true",
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "3",
+          "title": "Live TV",
+          "url": "/liveTV",
+          "visibility": "true",
+          "children": []
+        }
+      ]
+    }
+  ]
+}
