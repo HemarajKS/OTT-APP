@@ -17,8 +17,8 @@ export const getDashboardData = async (req, res) => {
 
     return res.json({
       data: [
-        { type: "movies", data: moviesData },
-        { type: "tv-shows", data: tvShowsData },
+        { type: "movies", name: "Movies", data: moviesData },
+        { type: "tv-shows", name: "TV Shows", data: tvShowsData },
       ],
     });
   } catch (error) {
