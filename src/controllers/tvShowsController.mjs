@@ -41,7 +41,7 @@ export const getTvShowsHome = (req, res) => {
 export const getTvShowById = (req, res) => {
   try {
     const tvShowId = req.params.id;
-    console.log(tvShowId);
+
     const show = tvShowsJson.find((show) => show._id.$oid === tvShowId);
 
     if (show) {
