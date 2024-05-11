@@ -1,4 +1,8 @@
-import menuJSON from "../../assets/data/menu.json" assert { type: "json" };
+import { readFile } from "fs/promises";
+
+const menuJSON = JSON.parse(
+  await readFile(new URL("../../assets/data/menu.json", import.meta.url))
+);
 
 export const getMenu = (req, res) => {
   try {
