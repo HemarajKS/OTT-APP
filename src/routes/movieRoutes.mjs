@@ -1,8 +1,14 @@
 import express from "express";
-import { getMovies } from "../controllers/moviesController.mjs";
+import {
+  getMovieById,
+  getMovies,
+  getMoviesHome,
+} from "../controllers/moviesController.mjs";
 
 const router = express.Router();
 
-router.get("/", getMovies);
+router.get("/all", getMovies);
+router.get("/home", getMoviesHome);
+router.get("/:id", getMovieById);
 
 export default router;
