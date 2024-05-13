@@ -1,10 +1,17 @@
 import express from "express";
+import cors from "cors";
 import menuRouter from "./routes/menuRoutes.mjs";
 import moviesRouter from "./routes/movieRoutes.mjs";
 import tvShowsRouter from "./routes/tvShowsRoutes.mjs";
 import dashboardRouter from "./routes/dashboardRoutes.mjs";
 
 const app = express();
+
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+  })
+);
 
 app.use(express.json());
 
