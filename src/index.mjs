@@ -19,7 +19,7 @@ app.use(express.json());
 app.use("/api/menu", menuRouter);
 app.use("/api/movies", moviesRouter);
 app.use("/api/tv-shows", tvShowsRouter);
-app.use("/api/dashboard", dashboardRouter);
+app.use("/api/home", dashboardRouter);
 
 const port = process.env.PORT || 8000;
 app.listen(port, () => {
