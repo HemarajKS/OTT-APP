@@ -41,7 +41,7 @@ export const groupByGenre = (movies) => {
     const genre = movie.genre;
     if (!acc[genre]) {
       acc[genre] = {
-        packageType: "Movies",
+        packageType: "Rails",
         title: genre,
         description: `This is the rail with ${genre}`,
         items: {
