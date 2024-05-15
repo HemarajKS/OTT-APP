@@ -3,7 +3,7 @@ import {
   getMovieById,
   getMovies,
   getMoviesHome,
-} from "../controllers/moviesController.mjs";
+} from "../controllers/moviesController/moviesController.v1.mjs";
 
 const router = express.Router();
 

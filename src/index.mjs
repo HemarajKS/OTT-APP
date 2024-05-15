@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import "dotenv/config";
 import menuRouter from "./routes/menuRoutes.mjs";
 import moviesRouter from "./routes/movieRoutes.mjs";
 import tvShowsRouter from "./routes/tvShowsRoutes.mjs";

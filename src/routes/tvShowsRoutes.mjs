@@ -3,7 +3,7 @@ import {
   getTvShowById,
   getTvShows,
   getTvShowsHome,
-} from "../controllers/tvShowsController.mjs";
+} from "../controllers/tvShowsController/tvShowsController.v1.mjs";
 
 const router = express.Router();
 

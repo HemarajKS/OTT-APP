@@ -1,4 +1,4 @@
-import { sanitizeResponse } from "../utils/sanitizeResponse.js";
+import { sanitizeResponse } from "../../utils/sanitizeResponse.js";
 import { readFile } from "fs/promises";
 
 const getData = async (filePath) => {
@@ -12,8 +12,10 @@ const getData = async (filePath) => {
 
 export const getDashboardData = async (req, res) => {
   try {
-    const moviesData = (await getData("../../assets/data/movies.json")) || [];
-    const tvShowsData = (await getData("../../assets/data/tvShows.json")) || [];
+    const moviesData =
+      (await getData("../../../assets/data/movies.json")) || [];
+    const tvShowsData =
+      (await getData("../../../assets/data/tvShows.json")) || [];
 
     return res.json({
       data: [
