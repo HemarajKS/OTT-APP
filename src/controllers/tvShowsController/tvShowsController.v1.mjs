@@ -1,9 +1,49 @@
 import { readFile } from "fs/promises";
-import { sanitizeResponse } from "../../utils/sanitizeResponse.js";
+import {
+  groupByGenre,
+  sanitizeResponse,
+} from "../../utils/sanitizeResponse.js";
+import { config_v1 } from "../../config/config.v1.js";
 
 const tvShowsJson = JSON.parse(
   await readFile(new URL("../../../assets/data/tvShows.json", import.meta.url))
 );
+
+const tvShowsPageJSON = JSON.parse(
+  await readFile(
+    new URL("../../../assets/data/pages/movies.json", import.meta.url)
+  )
+);
+
+export const tvShowsPage = (req, res) => {
+  try {
+    const groupedByGenre = groupByGenre(tvShowsJson);
+
+    const generatedData = Object.values(groupedByGenre);
+
+    const data = {
+      meta: { ...config_v1 },
+      curation: {
+        ...tvShowsPageJSON,
+        packages: [
+          {
+            packageType: "Movies",
+            title: "TV Shows",
+            description: "This is the rail with TV Shows",
+            items: generatedData,
+          },
+        ],
+      },
+    };
+
+    return res.json({
+      ...data,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ status: 500, message: "Internal server error" });
+  }
+};
 
 export const getTvShows = (req, res) => {
   const responseData = sanitizeResponse(tvShowsJson) || [];
