@@ -1,0 +1,6 @@
+{
+  "title": "Home Page",
+  "description": "This is the home page for the OTT Platform",
+  "route": "/home",
+  "theme": "dark"
+}
