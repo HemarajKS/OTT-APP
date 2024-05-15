@@ -28,7 +28,7 @@ export const moviePage = (req, res) => {
         ...moviePageJSON,
         packages: [
           {
-            packageType: "Rails",
+            packageType: "Movies",
             title: "Movies",
             description: "This is the rail with Movies",
             items: { packageType: "TvShows", contents: generatedData },
