@@ -44,17 +44,15 @@ export const groupByGenre = (movies) => {
         packageType: "Movies",
         title: genre,
         description: `This is the rail with ${genre}`,
-        items: [],
+        items: {
+          packageType: "Rails",
+          contents: [],
+        },
       };
     }
-    acc[genre].items.push({
-      packageType: "CarouselItems",
-      contents: [
-        {
-          ...sanitizeResponse(movie),
-          packageType: "CarouselCard",
-        },
-      ],
+    acc[genre].items.contents.push({
+      ...sanitizeResponse(movie),
+      packageType: "CarouselCard",
     });
 
     return acc;

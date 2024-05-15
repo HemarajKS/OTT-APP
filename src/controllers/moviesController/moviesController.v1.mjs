@@ -31,7 +31,7 @@ export const moviePage = (req, res) => {
             packageType: "Rails",
             title: "Movies",
             description: "This is the rail with Movies",
-            items: generatedData,
+            items: { packageType: "TvShows", contents: generatedData },
           },
         ],
       },

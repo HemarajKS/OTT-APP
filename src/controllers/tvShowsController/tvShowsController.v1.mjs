@@ -30,7 +30,7 @@ export const tvShowsPage = (req, res) => {
             packageType: "Rails",
             title: "TV Shows",
             description: "This is the rail with TV Shows",
-            items: generatedData,
+            items: { packageType: "TvShows", contents: generatedData },
           },
         ],
       },
