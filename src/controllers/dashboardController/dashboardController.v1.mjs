@@ -34,7 +34,7 @@ export const getDashboardData = async (req, res) => {
         ...homeData,
         packages: [
           {
-            packageType: "Movies",
+            packageType: "Rails",
             title: "Drama",
             description: "This is the rail with Drama",
             items: {
@@ -47,7 +47,7 @@ export const getDashboardData = async (req, res) => {
             },
           },
           {
-            packageType: "TVShows",
+            packageType: "Rails",
             title: "TV Shows",
             description: "This is the rail with TV shows",
             cta: "See All",
