@@ -1,0 +1,17 @@
+[
+  {
+    "id": "1",
+    "accordionTitle": "What is a reusable OTT platform?",
+    "accordionDescription": "A reusable OTT platform is a pre-built software system for launching streaming services, offering features like content management, user authentication, and monetization, streamlining the process of creating and managing OTT content."
+  },
+  {
+    "id": "2",
+    "accordionTitle": "How can we access the reusable OTT platform?",
+    "accordionDescription": "The reusable OTT platform is currently deployed locally. Once deployed, you can access it through your local network or by accessing the specific URL provided."
+  },
+  {
+    "id": "3",
+    "accordionTitle": "Why was the reusable OTT platform created?",
+    "accordionDescription": "The reusable OTT platform was created under Robospoft Technologies to save time for future developers and provide the best product to clients."
+  }
+]

@@ -8,6 +8,10 @@ const homeData = JSON.parse(
   )
 );
 
+const faqData = JSON.parse(
+  await readFile(new URL("../../../assets/data/faq.json", import.meta.url))
+);
+
 const getData = async (filePath) => {
   const jsonData = JSON.parse(
     await readFile(new URL(filePath, import.meta.url))
@@ -53,6 +57,16 @@ export const getDashboardData = async (req, res) => {
                 ...show,
                 packageType: "CarouselCard",
               })),
+            },
+          },
+          {
+            packageType: "FAQ",
+            title: "Frequently Asked Questions",
+            description: "Frequently Asked Questions",
+            itemType: "static",
+            items: {
+              packageType: "Accordion",
+              contents: faqData,
             },
           },
         ],
