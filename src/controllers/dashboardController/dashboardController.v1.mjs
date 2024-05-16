@@ -87,9 +87,9 @@ export const getDashboardData = async (req, res) => {
             return {
               packageType: componentTypes.HERO,
               title: "",
-              orientation: i % 2 === 0 ? constants.LEFT : constants.RIGHT,
 
               items: {
+                orientation: i % 2 === 0 ? constants.LEFT : constants.RIGHT,
                 title: heroData.title,
                 description: heroData.description,
                 image: {
