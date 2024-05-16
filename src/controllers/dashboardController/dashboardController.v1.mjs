@@ -12,6 +12,10 @@ const faqData = JSON.parse(
   await readFile(new URL("../../../assets/data/faq.json", import.meta.url))
 );
 
+const heroData = JSON.parse(
+  await readFile(new URL("../../../assets/data/hero.json", import.meta.url))
+);
+
 const getData = async (filePath) => {
   const jsonData = JSON.parse(
     await readFile(new URL(filePath, import.meta.url))
@@ -57,6 +61,16 @@ export const getDashboardData = async (req, res) => {
                 ...show,
                 packageType: "CarouselCard",
               })),
+            },
+          },
+          {
+            packageType: "Hero",
+            title: "",
+            description: "Hero section contents",
+            itemType: "static",
+            items: {
+              packageType: "HeroCard",
+              contents: heroData,
             },
           },
           {
