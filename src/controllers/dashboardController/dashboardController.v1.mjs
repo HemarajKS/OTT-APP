@@ -73,16 +73,30 @@ export const getDashboardData = async (req, res) => {
               })),
             },
           },
-          {
-            packageType: componentTypes.HERO,
-            title: "",
-            description: strings.heroContents,
-            itemType: constants.STATIC,
-            items: {
-              packageType: componentTypes.HERO_CARD,
-              contents: heroData,
-            },
-          },
+          // {
+          //   packageType: componentTypes.HERO,
+          //   title: "",
+          //   description: strings.heroContents,
+          //   itemType: constants.STATIC,
+          //   items: {
+          //     packageType: componentTypes.HERO_CARD,
+          //     contents: heroData,
+          //   },
+          // },
+          ...heroData.map((heroData) => {
+            return {
+              packageType: componentTypes.HERO,
+              title: "",
+              items: {
+                title: heroData.title,
+                description: heroData.description,
+                image: {
+                  url: heroData.image,
+                  altText: heroData.title,
+                },
+              },
+            };
+          }),
           {
             packageType: componentTypes.FAQ,
             title: strings.frequentlyAskedQues,
