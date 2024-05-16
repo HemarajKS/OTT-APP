@@ -3,8 +3,14 @@ import {
   groupByGenre,
   sanitizeResponse,
 } from "../../utils/sanitizeResponse.js";
-
 import { config_v1 } from "../../config/config.v1.js";
+import { componentTypes } from "../../../assets/constants/constants.js";
+
+const strings = JSON.parse(
+  await readFile(
+    new URL("../../../assets/strings/strings.json", import.meta.url)
+  )
+);
 
 const moviesJSON = JSON.parse(
   await readFile(new URL("../../../assets/data/movies.json", import.meta.url))
@@ -28,10 +34,13 @@ export const moviePage = (req, res) => {
         ...moviePageJSON,
         packages: [
           {
-            packageType: "Movies",
-            title: "Movies",
-            description: "This is the rail with Movies",
-            items: { packageType: "TvShows", contents: generatedData },
+            packageType: componentTypes.MOVIES,
+            title: strings.movies,
+            description: strings.moviesRails,
+            items: {
+              packageType: componentTypes.MOVIES,
+              contents: generatedData,
+            },
           },
         ],
       },
@@ -42,7 +51,7 @@ export const moviePage = (req, res) => {
     });
   } catch (error) {
     console.log(error);
-    res.status(500).json({ status: 500, message: "Internal server error" });
+    res.status(500).json({ status: 500, message: strings.internalServerError });
   }
 };
 
@@ -62,7 +71,7 @@ export const getMovies = (req, res) => {
       return res.json({ data: responseData });
     }
   } catch (error) {
-    res.status(500).json({ status: 500, message: "Internal server error" });
+    res.status(500).json({ status: 500, message: strings.internalServerError });
   }
 };
 
@@ -76,7 +85,7 @@ export const getMoviesHome = (req, res) => {
       data: responseData,
     });
   } catch (error) {
-    res.status(500).json({ status: 500, message: "Internal server error" });
+    res.status(500).json({ status: 500, message: strings.internalServerError });
   }
 };
 
@@ -88,9 +97,9 @@ export const getMovieById = (req, res) => {
     if (movie) {
       res.json({ data: movie });
     } else {
-      res.status(404).json({ error: "Movie not found" });
+      res.status(404).json({ error: strings.movieNotFound });
     }
   } catch (error) {
-    res.status(500).json({ status: 500, message: "Internal server error" });
+    res.status(500).json({ status: 500, message: strings.internalServerError });
   }
 };

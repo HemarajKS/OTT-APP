@@ -4,6 +4,11 @@ import {
   sanitizeResponse,
 } from "../../utils/sanitizeResponse.js";
 import { config_v1 } from "../../config/config.v1.js";
+import { componentTypes } from "../../../assets/constants/constants.js";
+
+const strings = JSON.parse(
+  await readFile(new URL("../../../assets/data/tvShows.json", import.meta.url))
+);
 
 const tvShowsJson = JSON.parse(
   await readFile(new URL("../../../assets/data/tvShows.json", import.meta.url))
@@ -27,10 +32,13 @@ export const tvShowsPage = (req, res) => {
         ...tvShowsPageJSON,
         packages: [
           {
-            packageType: "TvShows",
-            title: "TV Shows",
-            description: "This is the rail with TV Shows",
-            items: { packageType: "TvShows", contents: generatedData },
+            packageType: componentTypes.TV_SHOWS,
+            title: strings.tvShows,
+            description: strings.tvShowsRails,
+            items: {
+              packageType: componentTypes.TV_SHOWS,
+              contents: generatedData,
+            },
           },
         ],
       },
@@ -41,7 +49,7 @@ export const tvShowsPage = (req, res) => {
     });
   } catch (error) {
     console.log(error);
-    res.status(500).json({ status: 500, message: "Internal server error" });
+    res.status(500).json({ status: 500, message: strings.internalServerError });
   }
 };
 
@@ -60,7 +68,7 @@ export const getTvShows = (req, res) => {
       return res.json({ data: responseData });
     }
   } catch (error) {
-    res.status(500).json({ status: 500, message: "Internal server error" });
+    res.status(500).json({ status: 500, message: strings.internalServerError });
   }
 };
 
@@ -74,7 +82,7 @@ export const getTvShowsHome = (req, res) => {
       data: responseData,
     });
   } catch (error) {
-    res.status(500).json({ status: 500, message: "Internal server error" });
+    res.status(500).json({ status: 500, message: strings.internalServerError });
   }
 };
 
@@ -87,9 +95,9 @@ export const getTvShowById = (req, res) => {
     if (show) {
       res.json({ data: show });
     } else {
-      res.status(404).json({ error: "TV Show not found" });
+      res.status(404).json({ error: strings.tvShowsNotFound });
     }
   } catch (error) {
-    res.status(500).json({ status: 500, message: "Internal server error" });
+    res.status(500).json({ status: 500, message: strings.internalServerError });
   }
 };

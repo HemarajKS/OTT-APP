@@ -1,3 +1,10 @@
+import { componentTypes } from "../../assets/constants/constants.js";
+import { readFile } from "fs/promises";
+
+const strings = JSON.parse(
+  await readFile(new URL("../../assets/strings/strings.json", import.meta.url))
+);
+
 export const sanitizeResponse = (input) => {
   if (Array.isArray(input)) {
     return input.map((item, i) => ({
@@ -32,7 +39,7 @@ export const sanitizeResponse = (input) => {
       },
     };
   } else {
-    throw new Error("Invalid input type. Expected array or object.");
+    throw new Error(strings.invalidInputArray);
   }
 };
 
@@ -41,18 +48,18 @@ export const groupByGenre = (movies) => {
     const genre = movie.genre;
     if (!acc[genre]) {
       acc[genre] = {
-        packageType: "Rails",
+        packageType: componentTypes.RAILS,
         title: genre,
-        description: `This is the rail with ${genre}`,
+        description: `${strings.thisIsRailWith} ${genre}`,
         items: {
-          packageType: "Rails",
+          packageType: componentTypes.RAILS,
           contents: [],
         },
       };
     }
     acc[genre].items.contents.push({
       ...sanitizeResponse(movie),
-      packageType: "CarouselCard",
+      packageType: componentTypes.CAROUSEL_CARD,
     });
 
     return acc;

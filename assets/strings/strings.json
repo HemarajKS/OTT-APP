@@ -1,0 +1,14 @@
+{
+  "movies": "Movies",
+  "moviesRails": "This is the rail with Movies",
+  "seeAll": "See All",
+  "tvShows": "TV Shows",
+  "tvShowsRails": "This is the rail with TV shows",
+  "heroContents": "Hero section contents",
+  "frequentlyAskedQues": "Frequently Asked Questions",
+  "internalServerError": "Internal server error",
+  "movieNotFound": "Movie not found",
+  "tvShowsNotFound": "TV Show not found",
+  "thisIsRailWith": "This is the rail with",
+  "invalidInputArray": "Invalid input type. Expected array or object."
+}
