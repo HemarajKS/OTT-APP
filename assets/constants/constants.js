@@ -2,6 +2,8 @@ export const constants = {
   DARK_THEME: "dark",
   LIGHT_THEME: "light",
   STATIC: "static",
+  RIGHT: "right",
+  LEFT: "left",
 };
 
 export const componentTypes = {

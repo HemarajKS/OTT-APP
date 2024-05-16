@@ -83,10 +83,12 @@ export const getDashboardData = async (req, res) => {
           //     contents: heroData,
           //   },
           // },
-          ...heroData.map((heroData) => {
+          ...heroData.map((heroData, i) => {
             return {
               packageType: componentTypes.HERO,
               title: "",
+              orientation: i % 2 === 0 ? constants.LEFT : constants.RIGHT,
+
               items: {
                 title: heroData.title,
                 description: heroData.description,
