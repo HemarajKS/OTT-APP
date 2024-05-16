@@ -52,11 +52,11 @@ export const getDashboardData = async (req, res) => {
             title: strings.movies,
             description: strings.moviesRails,
             items: {
-              packageType: componentTypes.CAROUSEL_ITEMS,
+              // packageType: componentTypes.CAROUSEL_ITEMS,
               cta: strings.seeAll,
               contents: moviesData.map((movie) => ({
                 ...movie,
-                packageType: componentTypes.CAROUSEL_CARD,
+                // packageType: componentTypes.CAROUSEL_CARD,
               })),
             },
           },
@@ -66,10 +66,10 @@ export const getDashboardData = async (req, res) => {
             description: strings.tvShowsRails,
             cta: strings.seeAll,
             items: {
-              packageType: componentTypes.CAROUSEL_ITEMS,
+              // packageType: componentTypes.CAROUSEL_ITEMS,
               contents: tvShowsData.map((show) => ({
                 ...show,
-                packageType: componentTypes.CAROUSEL_CARD,
+                // packageType: componentTypes.CAROUSEL_CARD,
               })),
             },
           },
@@ -105,7 +105,7 @@ export const getDashboardData = async (req, res) => {
             description: strings.frequentlyAskedQues,
             itemType: constants.STATIC,
             items: {
-              packageType: componentTypes.ACCORDION,
+              // packageType: componentTypes.ACCORDION,
               contents: faqData,
             },
           },

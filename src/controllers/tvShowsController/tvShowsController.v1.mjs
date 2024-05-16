@@ -36,7 +36,7 @@ export const tvShowsPage = (req, res) => {
             title: strings.tvShows,
             description: strings.tvShowsRails,
             items: {
-              packageType: componentTypes.TV_SHOWS,
+              // packageType: componentTypes.TV_SHOWS,
               contents: generatedData,
             },
           },

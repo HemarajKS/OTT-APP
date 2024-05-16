@@ -59,7 +59,7 @@ export const groupByGenre = (movies) => {
     }
     acc[genre].items.contents.push({
       ...sanitizeResponse(movie),
-      packageType: componentTypes.CAROUSEL_CARD,
+      // packageType: componentTypes.CAROUSEL_CARD,
     });
 
     return acc;
