@@ -39,7 +39,11 @@ export const sanitizeResponse = (input) => {
       title: input.name,
       description: input.description,
       target: {
-        path: `${input.contentType?.toLowerCase()}/${input?._id?.$oid}`,
+        path: `${
+          { [constants.MOVIE]: "movies", [constants.TV_SERIES]: "tv-shows" }[
+            item.contentType
+          ]
+        }/${item?._id?.$oid}`,
       },
     };
   } else {
