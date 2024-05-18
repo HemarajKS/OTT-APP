@@ -1,4 +1,4 @@
-import { componentTypes } from "../../assets/constants/constants.js";
+import { componentTypes, constants } from "../../assets/constants/constants.js";
 import { readFile } from "fs/promises";
 
 const strings = JSON.parse(
@@ -19,7 +19,11 @@ export const sanitizeResponse = (input) => {
       title: item.name,
       description: item.description,
       target: {
-        path: `${item.contentType?.toLowerCase()}/${item?._id?.$oid}`,
+        path: `${
+          { [constants.MOVIE]: "movies", [constants.TV_SERIES]: "tv-shows" }[
+            item.contentType
+          ]
+        }/${item?._id?.$oid}`,
       },
     }));
   } else if (typeof input === "object") {

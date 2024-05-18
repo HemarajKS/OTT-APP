@@ -4,6 +4,8 @@ export const constants = {
   STATIC: "static",
   RIGHT: "right",
   LEFT: "left",
+  MOVIE: "Movie",
+  TV_SERIES: "TVSeries",
 };
 
 export const componentTypes = {
