@@ -21,7 +21,7 @@ export const sanitizeResponse = (input) => {
       target: {
         path: `${
           { [constants.MOVIE]: "movies", [constants.TV_SERIES]: "tv-shows" }[
-            item.contentType
+            item?.contentType
           ]
         }/${item?._id?.$oid}`,
       },
@@ -41,9 +41,9 @@ export const sanitizeResponse = (input) => {
       target: {
         path: `${
           { [constants.MOVIE]: "movies", [constants.TV_SERIES]: "tv-shows" }[
-            item.contentType
+            input.contentType
           ]
-        }/${item?._id?.$oid}`,
+        }/${input?._id?.$oid}`,
       },
     };
   } else {
