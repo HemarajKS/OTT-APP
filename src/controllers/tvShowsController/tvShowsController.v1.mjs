@@ -22,9 +22,21 @@ const tvShowsPageJSON = JSON.parse(
 
 export const tvShowsPage = (req, res) => {
   try {
+    const limit = req.query.limit ? parseInt(req.query.limit) : null;
+    const skip = req.query.skip ? parseInt(req.query.skip) : 0;
+
     const groupedByGenre = groupByGenre(tvShowsJson);
 
-    const generatedData = Object.values(groupedByGenre);
+    const allItems = Object.values(groupedByGenre).flat();
+
+    const totalItems = allItems.length;
+
+    let paginatedItems;
+    if (limit !== null) {
+      paginatedItems = allItems.slice(skip, skip + limit);
+    } else {
+      paginatedItems = allItems;
+    }
 
     const data = {
       meta: { ...config_v1 },
@@ -37,16 +49,19 @@ export const tvShowsPage = (req, res) => {
             description: strings.tvShowsRails,
             items: {
               // packageType: componentTypes.TV_SHOWS,
-              contents: generatedData,
+              contents: paginatedItems,
             },
           },
         ],
       },
+      pagination: {
+        limit: limit !== null ? limit : totalItems,
+        skip,
+        totalItems,
+      },
     };
 
-    return res.json({
-      ...data,
-    });
+    return res.json(data);
   } catch (error) {
     console.log(error);
     res.status(500).json({ status: 500, message: strings.internalServerError });
