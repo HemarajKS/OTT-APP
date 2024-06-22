@@ -1,8 +1,6 @@
 import { readFile } from "fs/promises";
-
-const footerJSON = JSON.parse(
-  await readFile(new URL("../../../assets/data/footer.json", import.meta.url))
-);
+import { fetchDataFromStrapi } from "../../services/strapiServices/strapiService.mjs";
+import { API_PATH } from "../../../assets/constants/apis.mjs";
 
 const strings = JSON.parse(
   await readFile(
@@ -10,9 +8,10 @@ const strings = JSON.parse(
   )
 );
 
-export const getFooter = (req, res) => {
+export const getFooter = async (req, res) => {
   try {
-    res.json({ data: footerJSON });
+    const data = await fetchDataFromStrapi(API_PATH.FOOTER);
+    res.json(data);
   } catch (error) {
     res.status(500).json({ status: 500, message: strings.internalServerError });
   }

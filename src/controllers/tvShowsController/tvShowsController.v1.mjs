@@ -1,117 +1,26 @@
 import { readFile } from "fs/promises";
-import {
-  groupByGenre,
-  sanitizeResponse,
-} from "../../utils/sanitizeResponse.js";
-import { config_v1 } from "../../config/config.v1.js";
-import { componentTypes } from "../../../assets/constants/constants.js";
+import { fetchDataFromStrapi } from "../../services/strapiServices/strapiService.mjs";
+import { API_PATH } from "../../../assets/constants/apis.mjs";
 
 const strings = JSON.parse(
-  await readFile(new URL("../../../assets/data/tvShows.json", import.meta.url))
-);
-
-const tvShowsJson = JSON.parse(
-  await readFile(new URL("../../../assets/data/tvShows.json", import.meta.url))
-);
-
-const tvShowsPageJSON = JSON.parse(
   await readFile(
-    new URL("../../../assets/data/pages/movies.json", import.meta.url)
+    new URL("../../../assets/strings/strings.json", import.meta.url)
   )
 );
 
-export const tvShowsPage = (req, res) => {
+export const tvShowsPage = async (req, res) => {
   try {
     const limit = req.query.limit ? parseInt(req.query.limit) : null;
     const skip = req.query.skip ? parseInt(req.query.skip) : 0;
 
-    const groupedByGenre = groupByGenre(tvShowsJson);
+    const queryParams = [];
+    if (skip !== null) queryParams.push(`skip=${skip}`);
+    if (limit !== null) queryParams.push(`limit=${limit}`);
 
-    const allItems = Object.values(groupedByGenre).flat();
-
-    const totalItems = allItems.length;
-
-    let paginatedItems;
-    if (limit !== null) {
-      paginatedItems = allItems.slice(skip, skip + limit);
-    } else {
-      paginatedItems = allItems;
-    }
-
-    const data = {
-      meta: { ...config_v1 },
-      curation: {
-        ...tvShowsPageJSON,
-        packages: [
-          {
-            packageType: componentTypes.TV_SHOWS,
-            title: strings.tvShows,
-            description: strings.tvShowsRails,
-            items: {
-              // packageType: componentTypes.TV_SHOWS,
-              contents: paginatedItems,
-            },
-          },
-        ],
-      },
-      pagination: {
-        limit: limit !== null ? limit : totalItems,
-        skip,
-        totalItems,
-      },
-    };
-
-    return res.json(data);
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ status: 500, message: strings.internalServerError });
-  }
-};
-
-export const getTvShows = (req, res) => {
-  const responseData = sanitizeResponse(tvShowsJson) || [];
-  try {
-    const limit = parseInt(req.query.limit);
-    const skip = parseInt(req.query.skip);
-    if (!isNaN(limit) && !isNaN(skip)) {
-      const paginatedData = responseData.slice(skip, skip + limit);
-      return res.json({
-        data: paginatedData,
-        totalLength: responseData.length,
-      });
-    } else {
-      return res.json({ data: responseData });
-    }
-  } catch (error) {
-    res.status(500).json({ status: 500, message: strings.internalServerError });
-  }
-};
-
-export const getTvShowsHome = (req, res) => {
-  const data = sanitizeResponse(tvShowsJson) || [];
-  const shuffled = data.sort(() => 0.5 - Math.random());
-  const responseData = shuffled.slice(0, 5);
-
-  try {
-    return res.json({
-      data: responseData,
-    });
-  } catch (error) {
-    res.status(500).json({ status: 500, message: strings.internalServerError });
-  }
-};
-
-export const getTvShowById = (req, res) => {
-  try {
-    const tvShowId = req.params.id;
-
-    const show = tvShowsJson.find((show) => show._id.$oid === tvShowId);
-
-    if (show) {
-      res.json({ data: show });
-    } else {
-      res.status(404).json({ error: strings.tvShowsNotFound });
-    }
+    const data = await fetchDataFromStrapi(
+      `${API_PATH.TV_SERIES}&${queryParams.join("&")}`
+    );
+    res.json(data);
   } catch (error) {
     res.status(500).json({ status: 500, message: strings.internalServerError });
   }
