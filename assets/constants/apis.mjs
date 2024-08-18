@@ -4,4 +4,5 @@ export const API_PATH = {
   HEADER: "/api/menus?populate=deep",
   MOVIES: "/api/pages/movies?populate=deep",
   TV_SERIES: "/api/pages/tv-shows?populate=deep",
+  PLANS: "/api/subscription?populate=deep",
 };

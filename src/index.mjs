@@ -6,6 +6,7 @@ import footerRouter from "./routes/footerRouter.mjs";
 import moviesRouter from "./routes/movieRoutes.mjs";
 import tvShowsRouter from "./routes/tvShowsRoutes.mjs";
 import dashboardRouter from "./routes/dashboardRoutes.mjs";
+import subscriptionRouter from "./routes/subscriptionRouter.mjs";
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use("/api/footer", footerRouter);
 app.use("/api/movies", moviesRouter);
 app.use("/api/tv-shows", tvShowsRouter);
 app.use("/api/home", dashboardRouter);
+app.use("/api/subscription", subscriptionRouter);
 
 const port = process.env.PORT || 8000;
 app.listen(port, () => {
